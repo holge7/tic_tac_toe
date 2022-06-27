@@ -1,5 +1,7 @@
 import React, {useState} from "react";
-import './css/cell.css';
+import './cell.css';
+import PieceCircle from '../pieces/circle/PieceCircle';
+import PieceCross from '../pieces/circle/PieceCircle';
 
 function Cell(props){
 

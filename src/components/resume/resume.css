@@ -1,0 +1,26 @@
+.resume_wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.resume_player{
+    width: 15rem;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 3rem;
+    padding: 0 1rem;
+    border-radius: .3rem;
+    box-shadow: 0px 0px 5px 2px black;
+}
+.resume_piece{
+    width: 3.5rem;
+    height: 3.5rem;
+
+}
+.resume_points{
+    font-size: 3rem;
+    font-weight: 600;
+}

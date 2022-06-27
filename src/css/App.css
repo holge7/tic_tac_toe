@@ -1,8 +1,19 @@
 .App {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 15vh 85vh;
+  height: 100vh;
+  
+}
+nav{
+  grid-column: span 12;
+  display: flex;
+  justify-content: center;
+}
+section{
+  background-color: var(--color-back);
+  grid-column: span 12;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: var(--color-back);
-
 }
