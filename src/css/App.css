@@ -1,15 +1,29 @@
 .App {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 15vh 85vh;
+  grid-template-rows: 20vh 80vh;
   height: 100vh;
   
 }
 nav{
   grid-column: span 12;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   justify-content: center;
 }
+.nav_points{
+  grid-column: span 12;
+  display: flex;
+  align-items: center;
+}
+.nav_info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: span 12;
+}
+
+
 section{
   background-color: var(--color-back);
   grid-column: span 12;

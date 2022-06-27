@@ -24,11 +24,7 @@ const boardDefault = [
 export default function Board(props){
 
     let [player, setPlayer] = useState('cross');
-    let [board, setBoard] = useState([
-        [null, null, null],
-        [null, null, null],
-        [null, null, null],
-    ]);
+    let [board, setBoard] = useState(boardDefault.map(a => a.slice()));
     let [restart, setRestart] = useState(false);
 
     useEffect(()=>{
@@ -56,14 +52,22 @@ export default function Board(props){
 
         //One player win
         if (gameResult) {
-            setBoard([
-                [null, null, null],
-                [null, null, null],
-                [null, null, null],
-            ]);
-            let player = players.find(p=>p.value==gameResult/3);
-            props.setGameStatus(player.piece);
+            //Set new visual board
+            setBoard(boardDefault.map(a => a.slice()));
+            //Search the player winner
+            let playerWinner = players.find(p=>p.value==gameResult/3);
+            //Pass the winner to App
+            props.setGameStatus({
+                'player':playerWinner,
+                'status':true
+            });
             setRestart(true)
+        }else{
+            //Pass the player actual to App
+            props.setGameStatus({
+                'player':player,
+                'status':false
+            });
         }
     }
 
@@ -86,6 +90,7 @@ export default function Board(props){
         </div>
     )
 }
+
 
 //Revise the board, 
 /*

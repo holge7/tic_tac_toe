@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './css/App.css';
 import Board from './components/board/Board';
-import Nav from './components/nav/Nav';
+import Info from './components/info/Info';
+import Points from './components/points/Points';
 import React, {useState, useEffect} from 'react';
 
 const defaultGameHistory = {
@@ -9,27 +9,30 @@ const defaultGameHistory = {
   "circle":0
 }
 
+const msg = {
+  'start':'Click to start the game',
+  'turn_circle':'Turn of O',
+  'turn_cross':'Turn of X'
+}
+
 function App() {
   let [gameStatus, setGameStatus] = useState(false);
   let [gameHistory, setGameHistory] = useState(defaultGameHistory);
-  let [boardRender, setBoardRender] = useState(true);
-  console.log("Game status: "+gameStatus)
 
   useEffect(()=>{
-    console.log("Entro en useEffect")
-    if (gameStatus) {
-      let newHistory = gameHistory;
-      newHistory[gameStatus]++;
-      setGameHistory(newHistory)
-      setBoardRender(false);
+    console.log(gameStatus.status)
+    if (gameStatus.status) {
+      gameHistory[gameStatus.player.piece]++;
+      setGameHistory(gameHistory)
       setGameStatus(false);
     }
   });
 
   return (
     <div className="App">
-      <nav>
-        <Nav history={gameHistory}/>
+      <nav id='nav'>
+        <Points class={'nav_points'} history={gameHistory} />
+        <Info class='nav_info' msg={msg.start} />
       </nav>
       <section>
         <Board setGameStatus={setGameStatus} />

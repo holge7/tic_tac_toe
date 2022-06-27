@@ -3,11 +3,11 @@ import PieceCross from "../pieces/cross/PieceCross";
 import PieceCircle from "../pieces/circle/PieceCircle";
 import './resume.css';
 
-function Resume(props){
+function Points(props){
     const history = props.history;
 
     return(
-        <div className="resume_wrapper">
+        <div className={`resume_wrapper `+props.class}>
             <div className="resume_player">
                 <div className="resume_piece">
                     <PieceCross />
@@ -24,4 +24,4 @@ function Resume(props){
     )
 }
 
-export default Resume;
+export default Points;
