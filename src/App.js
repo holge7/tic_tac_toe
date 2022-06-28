@@ -16,15 +16,22 @@ const msg = {
 }
 
 function App() {
-  let [gameStatus, setGameStatus] = useState(false);
+  let [gameStatus, setGameStatus] = useState({
+    'actPlayer':'cross',
+    'status':false,
+    'msg':'start'
+  });
   let [gameHistory, setGameHistory] = useState(defaultGameHistory);
 
   useEffect(()=>{
-    console.log(gameStatus.status)
     if (gameStatus.status) {
-      gameHistory[gameStatus.player.piece]++;
+      gameHistory[gameStatus.actPlayer]++;
       setGameHistory(gameHistory)
-      setGameStatus(false);
+      setGameStatus({
+        'actPlayer':gameStatus.actPlayer,
+        'status':false,
+        'msg':'start'
+      });
     }
   });
 
@@ -32,10 +39,10 @@ function App() {
     <div className="App">
       <nav id='nav'>
         <Points class={'nav_points'} history={gameHistory} />
-        <Info class='nav_info' msg={msg.start} />
+        <Info class='nav_info' msg={msg[gameStatus.msg]} />
       </nav>
       <section>
-        <Board setGameStatus={setGameStatus} />
+        <Board startPiece={gameStatus.actPlayer} setGameStatus={setGameStatus} />
       </section>
     </div>
   );

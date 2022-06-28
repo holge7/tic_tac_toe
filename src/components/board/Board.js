@@ -23,7 +23,7 @@ const boardDefault = [
 
 export default function Board(props){
 
-    let [player, setPlayer] = useState('cross');
+    let [player, setPlayer] = useState(props.startPiece);
     let [board, setBoard] = useState(boardDefault.map(a => a.slice()));
     let [restart, setRestart] = useState(false);
 
@@ -58,17 +58,25 @@ export default function Board(props){
             let playerWinner = players.find(p=>p.value==gameResult/3);
             //Pass the winner to App
             props.setGameStatus({
-                'player':playerWinner,
-                'status':true
+                'actPlayer':playerWinner.piece,
+                'status':true,
+                'msg':getMsgGameStatus()
             });
-            setRestart(true)
+            setRestart(true);
         }else{
             //Pass the player actual to App
             props.setGameStatus({
-                'player':player,
-                'status':false
+                'actPlayer':player.piece,
+                'status':false,
+                'msg':getMsgGameStatus()
             });
         }
+    }
+
+    function getMsgGameStatus(){
+        console.log("Player: "+player)
+        if (player=='cross') return 'turn_circle';
+        else return 'turn_cross';
     }
 
     function generateCells(){
