@@ -27,9 +27,7 @@ export default function Board(props){
     let [board, setBoard] = useState(boardDefault.map(a => a.slice()));
     let [restart, setRestart] = useState(false);
 
-    useEffect(()=>{
-        if (restart) setRestart(false)
-    });
+
 
     //Change actual player 
     function changePlayer() {
@@ -39,7 +37,7 @@ export default function Board(props){
 
     //Update the array board 
     function updateBoard(pos){
-        const row = Math.floor(pos/3); 
+        const row = Math.floor(pos/3);
         const column = pos%3;
         board[row][column] = player == 'cross' ? 1 : -1;
         setBoard(board)
@@ -60,7 +58,8 @@ export default function Board(props){
             props.setGameStatus({
                 'actPlayer':playerWinner.piece,
                 'status':true,
-                'msg':getMsgGameStatus()
+                'restart':false,
+                'msg':'win_'+playerWinner.piece,
             });
             setRestart(true);
         }else{
@@ -68,13 +67,13 @@ export default function Board(props){
             props.setGameStatus({
                 'actPlayer':player.piece,
                 'status':false,
+                'restart':false,
                 'msg':getMsgGameStatus()
             });
         }
     }
 
     function getMsgGameStatus(){
-        console.log("Player: "+player)
         if (player=='cross') return 'turn_circle';
         else return 'turn_cross';
     }
@@ -86,6 +85,7 @@ export default function Board(props){
                 <Cell 
                     key={i} 
                     actualState={player} 
+                    restart={restart}
                     changePlayer={()=>{changeTurn(i)}} 
                 />)
         }
@@ -94,7 +94,7 @@ export default function Board(props){
 
     return(
         <div id="board">
-            {!restart && generateCells()}
+            {!props.restart && generateCells()}
         </div>
     )
 }

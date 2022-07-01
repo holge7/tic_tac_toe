@@ -1,0 +1,11 @@
+.new_game{
+    background: none;
+    border: 3px solid black;
+    padding: .4rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all .2s;
+}
+.new_game:active{
+    transform: translateY(2px);
+}
