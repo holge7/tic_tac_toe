@@ -9,6 +9,7 @@ function Cell(props){
     
 
     function click(){
+        console.log(props.restart)
         if (!state && !props.restart) {
             setState(props.actualState)
             props.changePlayer()

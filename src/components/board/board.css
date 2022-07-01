@@ -5,14 +5,12 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     background-color: var(--color-line);
+    animation: board .3s linear;
 }
 .cell{
     background-color: var(--color-back);
 }
 
-.board1{
-    animation: board .3s linear;
-}
 @keyframes board {
     from{
         clip-path: inset(50% 50% 50% 50%);
@@ -23,15 +21,3 @@
 }
 
 
-.board2{
-    animation: boardReverse .3s linear forwards;
-}
-
-@keyframes boardReverse {
-    from{
-        clip-path: inset(100% 100% 100% 100%);
-    }
-    to{
-        clip-path: inset(50% 50% 50% 50%);
-    }
-}

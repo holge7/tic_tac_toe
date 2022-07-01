@@ -43,6 +43,12 @@ export default function Board(props){
         setBoard(board)
     }
 
+    useEffect(()=>{
+        if (props.restart && restart) {
+            setRestart(false);
+        }
+    })
+
     function changeTurn(pos){
         updateBoard(pos);
         changePlayer();
